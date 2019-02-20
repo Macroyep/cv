@@ -1,0 +1,78 @@
+.list {
+  height: 100%;
+  border-right: 1px solid rgb(236, 232, 232);
+  box-sizing: border-box;
+}
+
+.header {
+  height: 100px;
+  background: rgb(236, 232, 232);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+}
+.searchBox {
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(236, 232, 232);
+  height: 51px;
+  padding: 0 5px;
+  line-height: 51px;
+}
+.searchBox input {
+  width: 100%;
+  border: 1px solid rgb(236, 232, 232);
+  box-sizing: border-box;
+  border-radius: 25px;
+  font-size: 15px;
+  padding: 5px 10px;
+}
+
+.folderList {
+  margin: 0;
+  padding: 0;
+}
+
+.folderList li {
+  padding: 7px 10px;
+  list-style: none;
+}
+.folderList li:hover {
+  background: rgba(236, 232, 232, 0.5);
+  cursor: pointer;
+}
+
+.active {
+  background: rgb(236, 232, 232);
+}
+.folderEdit {
+  display: none;
+  color: gray;
+}
+
+.folderName {
+  flex: 1;
+}
+.folderItem {
+  display: flex;
+}
+
+.folderEdit {
+  text-decoration: none;
+  margin: 0 2px;
+}
+.folderItem:hover .folderEdit {
+  display: block;
+}
+.folderEdit:hover {
+  color: black;
+}
+
+.folderInput {
+  width: 100%;
+  font-size: 15px;
+}

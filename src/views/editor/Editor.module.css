@@ -1,0 +1,15 @@
+.editor {
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+.sectionBlock {
+  width: 200px;
+}
+.textArea {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

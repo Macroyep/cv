@@ -1,0 +1,14 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+
+.iconfont {
+  padding: 0 3px;
+}

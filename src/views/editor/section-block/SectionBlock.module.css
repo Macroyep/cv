@@ -1,0 +1,27 @@
+.list {
+  height: 100%;
+  border-right: 1px solid rgb(236, 232, 232);
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 51px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(236, 232, 232);
+}
+
+.folderList {
+  margin: 0;
+  padding: 0;
+}
+.folderList li {
+  box-sizing: border-box;
+  margin: 2px 0;
+  padding: 7px 10px;
+  list-style: none;
+  cursor: pointer;
+  border-bottom: 1px solid rgb(236, 232, 232);
+}
