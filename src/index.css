@@ -12,3 +12,26 @@ body,
 .iconfont {
   padding: 0 3px;
 }
+
+.mobile-cover {
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000000; /* 避免有些方库的高端zindex  */
+  background: #fff;
+}
+
+@media screen and (max-width: 1336px) {
+  .mobile-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  body,
+  html {
+    overflow: hidden;
+  }
+}

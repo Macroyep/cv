@@ -4,8 +4,6 @@ import FolderList from './views/folder/FolderList';
 import styles from './App.module.css';
 import { connect } from 'react-redux';
 class App extends Component {
-  componentDidMount() {}
-
   isShowBlock(key) {
     const item = this.props.navs.find(item => item.key === key);
     return item.show;
@@ -13,6 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className={styles.app}>
+        <div className="mobile-cover">请使用大屏幕的设备访问 (goover.top)</div>
         <div className={styles.content}>
           {this.isShowBlock('folder') && (
             <div className={styles.folder}>
