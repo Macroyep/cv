@@ -1,0 +1,20 @@
+language: node_js
+sudo: required
+node_js:
+  - 8.15.0
+cache:
+  directories:
+    - node_modules
+install:
+  - npm install
+script:
+  - npm run build
+  - cd build
+  - echo 'goover.top' > CNAME
+  - git init
+  - git add -A
+  - git commit -m 'deploy'
+  - git push -f https://${token}@github.com/Macroyep/cvpage.git master
+after_script:
+  - node deploy.js
+branch: build
