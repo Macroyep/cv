@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import styles from './Editor.module.css';
 
 import { updateDocument, createDocument } from '../../actions/document';
-
 //render by https://github.com/sparksuite/simplemde-markdown-editor
 import './simplemde.css';
 import SectionBlock from './section-block/SectionBlock';
@@ -11,6 +10,7 @@ import SimpleMDE from './simplemde';
 import { updateConfigNav } from '../../actions/config';
 
 import 'github-markdown-css/github-markdown.css';
+import { formReqeust } from '../../utils';
 class Editor extends Component {
   constructor(props) {
     super(props);
@@ -102,12 +102,6 @@ class Editor extends Component {
         title: 'Numbered List'
       },
       {
-        name: 'clean-block',
-        action: SimpleMDE.cleanBlock,
-        className: 'fa fa-eraser fa-clean-block',
-        title: 'Clean block'
-      },
-      {
         name: 'link',
         action: SimpleMDE.drawLink,
         className: 'fa fa-link',
@@ -158,11 +152,21 @@ class Editor extends Component {
       },
       {
         name: 'github',
-        action: 'https://github.com/macroyep/cv',
+        action: 'https://github.com/md-cv',
         className: 'fa fa-github fr',
         title: 'GitHub'
+      },
+      {
+        name: 'pdf',
+        action: this.exportPDF.bind(this),
+        className: 'fa fa-file-pdf-o fr text-icon',
+        text: '导出PDF',
+        title: 'PDF'
       }
     ];
+  }
+  exportPDF() {
+    formReqeust('https://render.goover.top/pdf.php', this.props.document);
   }
   onCreateDoc() {
     this.props.onCreateDoc('Untitled', '# Readme');

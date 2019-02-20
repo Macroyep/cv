@@ -14,7 +14,7 @@ script:
   - git init
   - git add -A
   - git commit -m 'deploy'
-  - git push -f https://${token}@github.com/Macroyep/cvpage.git master
+  - git push -f https://${token}@github.com/md-cv/cvpage.git master
 branches:
   only:
     - build
