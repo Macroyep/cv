@@ -831,3 +831,7 @@ span.CodeMirror-selectedtext {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.fr {
+  float: right;
+}

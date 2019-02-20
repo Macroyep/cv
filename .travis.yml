@@ -1,6 +1,5 @@
 language: node_js
 sudo: required
-branch: build
 node_js:
   - 8.15.0
 cache:
@@ -16,3 +15,6 @@ script:
   - git add -A
   - git commit -m 'deploy'
   - git push -f https://${token}@github.com/Macroyep/cvpage.git master
+branches:
+  only:
+    - build

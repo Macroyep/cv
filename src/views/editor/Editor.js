@@ -152,9 +152,15 @@ class Editor extends Component {
       },
       {
         name: 'guide',
-        action: this.onGuide.bind(this),
-        className: 'fa fa-question-circle',
+        action: 'https://coding.net/help/doc/project/markdown.html#Markdown',
+        className: 'fa fa-question-circle fr',
         title: 'Guide'
+      },
+      {
+        name: 'github',
+        action: 'https://github.com/macroyep/cv',
+        className: 'fa fa-github fr',
+        title: 'GitHub'
       }
     ];
   }
