@@ -831,7 +831,7 @@ function togglePreview(editor) {
   var preview = wrapper.lastChild;
   if (!preview || !/editor-preview/.test(preview.className)) {
     preview = document.createElement('div');
-    preview.className = 'editor-preview';
+    preview.className = 'markdown-body editor-preview';
     wrapper.appendChild(preview);
   }
   if (/editor-preview-active/.test(preview.className)) {
@@ -1754,7 +1754,7 @@ SimpleMDE.prototype.createSideBySide = function() {
 
   if (!preview || !/editor-preview-side/.test(preview.className)) {
     preview = document.createElement('div');
-    preview.className = 'editor-preview-side';
+    preview.className = 'editor-preview-side markdown-body';
     wrapper.parentNode.insertBefore(preview, wrapper.nextSibling);
   }
 

@@ -6,11 +6,11 @@ import { updateDocument, createDocument } from '../../actions/document';
 
 //render by https://github.com/sparksuite/simplemde-markdown-editor
 import './simplemde.css';
-import './github-light.css';
 import SectionBlock from './section-block/SectionBlock';
 import SimpleMDE from './simplemde';
 import { updateConfigNav } from '../../actions/config';
 
+import 'github-markdown-css/github-markdown.css';
 class Editor extends Component {
   constructor(props) {
     super(props);
