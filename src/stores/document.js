@@ -32,7 +32,6 @@ const reducers = {
   },
   [DOCUMENT.DELETE](state, { index }) {
     let list = cloneDeep(state.list);
-    console.log(index, list.length);
 
     list.splice(index, 1);
     if (list.length === 0) {
@@ -40,12 +39,10 @@ const reducers = {
       list = [document];
       index = 0;
     } else {
-      console.log(index, list.length);
       if (index >= list.length) {
         index = list.length - 1;
       }
     }
-    console.log(index, list.length);
 
     return {
       index,

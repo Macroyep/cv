@@ -80,7 +80,7 @@ class FolderList extends Component {
         href="javascript:;"
         className={styles.folderEdit}
       >
-        <i className="iconfont icon-close" />
+        <i className="iconfont icon-bin" />
       </a>
     );
   }
@@ -95,19 +95,7 @@ class FolderList extends Component {
         href="javascript:;"
         className={styles.folderEdit}
       >
-        <i className="iconfont icon-edit" />
-      </a>
-    );
-  }
-
-  renderEditCheck(index) {
-    return (
-      <a
-        onClick={() => this.onEdit(index)}
-        href="javascript:;"
-        className={styles.folderEdit}
-      >
-        <i className="iconfont icon-selected" />
+        <i className="iconfont icon-pencil" />
       </a>
     );
   }
