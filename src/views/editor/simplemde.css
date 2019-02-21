@@ -343,6 +343,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   font-variant-ligatures: none;
 }
 
+.CodeMirror-wrap {
+  box-sizing: border-box;
+}
 .CodeMirror-wrap pre {
   word-wrap: break-word;
   white-space: pre-wrap;
@@ -834,4 +837,12 @@ span.CodeMirror-selectedtext {
 
 .fr {
   float: right;
+}
+@media screen and (max-width: 1336px) {
+  .hide-on-small {
+    display: none !important;
+  }
+  .editor-preview-active-side {
+    display: none !important;
+  }
 }

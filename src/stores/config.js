@@ -41,11 +41,6 @@ function getDefaultState() {
         show: true
       },
       {
-        name: '格式片段',
-        key: 'section',
-        show: true
-      },
-      {
         name: '预览',
         key: 'preview',
         show: true

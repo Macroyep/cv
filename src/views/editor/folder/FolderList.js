@@ -5,8 +5,7 @@ import {
   setCurrentDocument,
   deleteDocument,
   updateDocument
-} from '../../actions/document';
-// import logo from '../../logo.png';
+} from '../../../actions/document';
 class FolderList extends Component {
   constructor(props) {
     super(props);

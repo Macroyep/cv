@@ -11,6 +11,7 @@ import { updateConfigNav } from '../../actions/config';
 
 import 'github-markdown-css/github-markdown.css';
 import { formReqeust } from '../../utils';
+import FolderList from './folder/FolderList';
 class Editor extends Component {
   constructor(props) {
     super(props);
@@ -23,106 +24,99 @@ class Editor extends Component {
         name: 'folder',
         action: this.onToggleFolder.bind(this),
         title: 'Folder',
-        className: 'text-icon fa fa-folder',
+        className: 'text-icon icon-folder-open',
         text: '目录'
-      },
-      {
-        name: 'block-section',
-        action: this.onToggleBlockSection.bind(this),
-        title: 'Folder',
-        className: 'text-icon fa fa-paragraph',
-        text: '片段'
       },
       {
         name: 'create',
         action: this.onCreateDoc.bind(this),
         title: 'Create',
-        className: 'text-icon fa fa-plus',
+        className: 'text-icon icon-folder-plus',
         text: '创建'
       },
       {
         name: 'bold',
         action: SimpleMDE.toggleBold,
-        className: 'fa fa-bold',
+        className: 'icon-bold',
         title: 'Bold'
       },
       {
         name: 'italic',
         action: SimpleMDE.toggleItalic,
-        className: 'fa fa-italic',
+        className: 'icon-italic',
         title: 'Italic'
       },
       {
         name: 'strikethrough',
         action: SimpleMDE.toggleStrikethrough,
-        className: 'fa fa-strikethrough',
+        className: 'icon-strikethrough',
         title: 'Strikethrough'
       },
       {
         name: 'heading-1',
         action: SimpleMDE.toggleHeading1,
-        className: 'fa fa-header fa-header-x fa-header-1',
+        className: 'icon-header fa-header-x fa-header-1',
         title: 'Big Heading'
       },
       {
         name: 'heading-2',
         action: SimpleMDE.toggleHeading2,
-        className: 'fa fa-header fa-header-x fa-header-2',
+        className: 'icon-header fa-header-x fa-header-2',
         title: 'Medium Heading'
       },
       {
         name: 'heading-3',
         action: SimpleMDE.toggleHeading3,
-        className: 'fa fa-header fa-header-x fa-header-3',
+        className: 'icon-header fa-header-x fa-header-3',
         title: 'Small Heading'
       },
       {
         name: 'code',
         action: SimpleMDE.toggleCodeBlock,
-        className: 'fa fa-code',
+        className: 'icon-embed2',
         title: 'Code'
       },
 
       {
         name: 'quote',
         action: SimpleMDE.toggleBlockquote,
-        className: 'fa fa-quote-left',
+        className: 'icon-quotes-left',
         title: 'Quote'
       },
       {
         name: 'unordered-list',
         action: SimpleMDE.toggleUnorderedList,
-        className: 'fa fa-list-ul',
+        className: 'icon-list2',
         title: 'Generic List'
       },
       {
         name: 'ordered-list',
         action: SimpleMDE.toggleOrderedList,
-        className: 'fa fa-list-ol',
+        className: 'icon-list-numbered',
         title: 'Numbered List'
       },
       {
         name: 'link',
         action: SimpleMDE.drawLink,
-        className: 'fa fa-link',
+        className: 'icon-link',
         title: 'Create Link'
       },
       {
         name: 'image',
         action: SimpleMDE.drawImage,
-        className: 'fa fa-picture-o',
+        className: 'icon-image',
         title: 'Insert Image'
       },
       {
         name: 'table',
         action: SimpleMDE.drawTable,
-        className: 'fa fa-table',
+        className: 'icon-table2',
         title: 'Insert Table'
       },
       {
         name: 'horizontal-rule',
         action: SimpleMDE.drawHorizontalRule,
-        className: 'fa fa-minus',
+        className: 'icon-minus',
         title: 'Insert Horizontal Line'
       },
       {
@@ -131,7 +125,7 @@ class Editor extends Component {
           SimpleMDE.togglePreview(editor);
           this.props.onUpdateNav('preview', false);
         },
-        className: 'fa fa-eye no-disable',
+        className: 'icon-eye no-disable',
         title: 'Toggle Preview'
       },
       {
@@ -141,25 +135,25 @@ class Editor extends Component {
           const show = SimpleMDE.toggleSideBySide(editor);
           this.props.onUpdateNav('preview', show);
         },
-        className: 'fa fa-columns no-disable no-mobile',
+        className: 'icon-columns no-disable no-mobile hide-on-small',
         title: 'Toggle Side by Side'
       },
       {
         name: 'guide',
         action: 'https://coding.net/help/doc/project/markdown.html#Markdown',
-        className: 'fa fa-question-circle fr',
+        className: 'icon-question fr',
         title: 'Guide'
       },
       {
         name: 'github',
         action: 'https://github.com/md-cv',
-        className: 'fa fa-github fr',
+        className: 'icon-github fr',
         title: 'GitHub'
       },
       {
         name: 'pdf',
         action: this.exportPDF.bind(this),
-        className: 'fa fa-file-pdf-o fr text-icon',
+        className: 'icon-file-pdf fr text-icon',
         text: '导出PDF',
         title: 'PDF'
       }
@@ -211,9 +205,15 @@ class Editor extends Component {
   render() {
     return (
       <section className={styles.editor}>
-        {this.isShowBlock('section') && (
-          <div className={styles.sectionBlock}>
-            <SectionBlock handleSection={this.insertBlock.bind(this)} />
+        {this.isShowBlock('folder') && (
+          <div className={styles.aside}>
+            <div className={styles.folder}>
+              <FolderList />
+            </div>
+
+            <div className={styles.section}>
+              <SectionBlock handleSection={this.insertBlock.bind(this)} />
+            </div>
           </div>
         )}
         <div className={styles.textArea}>

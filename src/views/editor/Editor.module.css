@@ -3,8 +3,16 @@
   display: flex;
   position: relative;
 }
-.sectionBlock {
+.aside {
+  display: flex;
+  flex-direction: column;
   width: 200px;
+}
+
+.folder {
+  flex: 1;
+}
+.section {
 }
 .textArea {
   flex: 1;

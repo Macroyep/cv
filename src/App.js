@@ -4,20 +4,10 @@ import FolderList from './views/folder/FolderList';
 import styles from './App.module.css';
 import { connect } from 'react-redux';
 class App extends Component {
-  isShowBlock(key) {
-    const item = this.props.navs.find(item => item.key === key);
-    return item.show;
-  }
   render() {
     return (
       <div className={styles.app}>
-        <div className="mobile-cover">请使用大屏幕的设备访问 (goover.top)</div>
         <div className={styles.content}>
-          {this.isShowBlock('folder') && (
-            <div className={styles.folder}>
-              <FolderList />
-            </div>
-          )}
           <div className={styles.editor}>
             <Editor />
           </div>
@@ -29,9 +19,7 @@ class App extends Component {
 
 export default connect(
   state => {
-    return {
-      navs: state.config.navs
-    };
+    return {};
   },
   dispatch => {
     return {};

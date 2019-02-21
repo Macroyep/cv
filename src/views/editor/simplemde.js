@@ -1355,36 +1355,7 @@ function SimpleMDE(options) {
 
   // Used later to refer to it"s parent
   options.parent = this;
-
-  // Check if Font Awesome needs to be auto downloaded
-  var autoDownloadFA = true;
-
-  if (options.autoDownloadFontAwesome === false) {
-    autoDownloadFA = false;
-  }
-
-  if (options.autoDownloadFontAwesome !== true) {
-    var styleSheets = document.styleSheets;
-    for (var i = 0; i < styleSheets.length; i++) {
-      if (!styleSheets[i].href) continue;
-
-      if (
-        styleSheets[i].href.indexOf('//maxcdn.bootstrapcdn.com/font-awesome/') >
-        -1
-      ) {
-        autoDownloadFA = false;
-      }
-    }
-  }
-
-  if (autoDownloadFA) {
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href =
-      'https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css';
-    document.getElementsByTagName('head')[0].appendChild(link);
-  }
-
+  
   // Find the textarea to use
   if (options.element) {
     this.element = options.element;
