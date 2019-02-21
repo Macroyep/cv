@@ -56,6 +56,9 @@
 
 .folderName {
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .folderItem {
   display: flex;
@@ -63,6 +66,7 @@
 
 .folderEdit {
   text-decoration: none;
+  font-size: 1;
   margin: 0 2px;
 }
 .folderItem:hover .folderEdit {

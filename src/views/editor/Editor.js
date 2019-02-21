@@ -160,6 +160,8 @@ class Editor extends Component {
     ];
   }
   exportPDF() {
+    // formReqeust('http://public.test/pdf.php', this.props.document);
+
     formReqeust('https://render.goover.top/pdf.php', this.props.document);
   }
   onCreateDoc() {

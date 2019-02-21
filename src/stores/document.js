@@ -1,6 +1,6 @@
 import { DOCUMENT } from './reducer-types';
 import { cloneDeep } from 'lodash';
-
+import { build } from '../section';
 const reducers = {
   [DOCUMENT.INIT](state, { lastState }) {
     return cloneDeep(lastState);
@@ -81,7 +81,7 @@ function getDefaultState() {
   }
   return {
     index: 0,
-    list: [buildDocument('Untitled', '#')]
+    list: [buildDocument('刘德华-Web高级前端开发工程师', build())]
   };
 }
 

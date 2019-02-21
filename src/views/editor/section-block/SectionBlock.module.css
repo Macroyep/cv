@@ -2,27 +2,31 @@
   height: 100%;
   border-right: 1px solid rgb(236, 232, 232);
   box-sizing: border-box;
+  background: rgba(236, 232, 232, 0.7);
 }
 
 .header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 7px 10px;
-  height: 51px;
+  padding: 15px 10px;
   box-sizing: border-box;
-  background: rgba(247, 247, 247, 0.8);
+  border-top: 1px solid rgb(236, 232, 232);
+  border-bottom: 1px solid rgb(236, 232, 232);
 }
-
+.header a {
+  color: rgb(177, 174, 174);
+  text-decoration: none;
+}
 .folderList {
   margin: 0;
   padding: 0;
 }
 .folderList li {
   box-sizing: border-box;
-  margin: 2px 0;
   padding: 7px 10px;
   list-style: none;
   cursor: pointer;
   border-bottom: 1px solid rgb(236, 232, 232);
+}
+
+.folderList li:hover {
+  background: #fff;
 }
