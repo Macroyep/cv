@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Editor from './views/editor/Editor';
-import FolderList from './views/folder/FolderList';
 import styles from './App.module.css';
 import { connect } from 'react-redux';
 class App extends Component {
