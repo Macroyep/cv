@@ -1,6 +1,9 @@
 import { DOCUMENT } from './reducer-types';
 import { cloneDeep } from 'lodash';
-import { build } from '../section';
+import { build } from '../configs/section';
+import { initStorage } from './utils';
+const storage = initStorage('document');
+
 const reducers = {
   [DOCUMENT.INIT](state, { lastState }) {
     return cloneDeep(lastState);
@@ -64,29 +67,19 @@ export default function(state = getDefaultState(), action) {
     const f = reducers[type];
     if (typeof f === 'function') {
       state = f(state, action);
-      saveToLocal(state);
+      storage.set(state);
     }
   }
   return state;
 }
 
 function getDefaultState() {
-  let state = localStorage.getItem('document');
-  try {
-    if (state) {
-      return JSON.parse(state);
-    }
-  } catch (err) {
-    console.error(err);
+  const state = storage.get();
+  if (state) {
+    return state;
   }
   return {
     index: 0,
     list: [buildDocument('刘德华-Web高级前端开发工程师', build())]
   };
-}
-
-function saveToLocal(state) {
-  setTimeout(() => {
-    localStorage.setItem('document', JSON.stringify(state));
-  });
 }

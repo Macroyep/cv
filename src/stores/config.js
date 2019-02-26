@@ -1,5 +1,8 @@
 import { CONFIG } from './reducer-types';
 import cloneDeep from 'lodash/cloneDeep';
+import { initStorage } from './utils';
+
+const storage = initStorage('config');
 const reducers = {
   [CONFIG.UPDATE_NAV](state, { key, show }) {
     const newState = cloneDeep(state);
@@ -17,22 +20,17 @@ export default function(state = getDefaultState(), action) {
     const f = reducers[type];
     if (typeof f === 'function') {
       state = f(state, action);
-      saveToLocal(state);
+      storage.set(state);
     }
   }
   return state;
 }
 
 function getDefaultState() {
-  let state = localStorage.getItem('config');
-  try {
-    if (state) {
-      return JSON.parse(state);
-    }
-  } catch (err) {
-    console.error(err);
+  const state = storage.get();
+  if (state) {
+    return state;
   }
-
   const defaultState = {
     navs: [
       {
@@ -49,10 +47,4 @@ function getDefaultState() {
   };
 
   return defaultState;
-}
-
-function saveToLocal(state) {
-  setTimeout(() => {
-    localStorage.setItem('config', JSON.stringify(state));
-  });
 }
