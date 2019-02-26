@@ -1,2 +1,2 @@
-import section from '../../../section';
+import section from '../../../configs/section';
 export default section;
