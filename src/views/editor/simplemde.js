@@ -1,3 +1,6 @@
+/**
+ * 已准备本应用作了修改
+ */
 /*global require,module*/
 'use strict';
 var CodeMirror = require('codemirror');
@@ -1355,7 +1358,7 @@ function SimpleMDE(options) {
 
   // Used later to refer to it"s parent
   options.parent = this;
-  
+
   // Find the textarea to use
   if (options.element) {
     this.element = options.element;
