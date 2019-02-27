@@ -12,11 +12,16 @@ import { updateConfigNav } from '../../actions/config';
 import 'github-markdown-css/github-markdown.css';
 import { formReqeust } from '../../utils';
 import FolderList from './folder/FolderList';
+import Dropdown from './export/Dropdown';
 class Editor extends Component {
   constructor(props) {
     super(props);
     this.textArea = React.createRef();
     this.simpleMDE = null;
+    this.state = {
+      hoverEl: null
+    };
+    this.dropdownHoverTimeout = null;
   }
   getToolbarOption() {
     return [
@@ -153,11 +158,26 @@ class Editor extends Component {
       {
         name: 'pdf',
         action: this.exportPDF.bind(this),
+        hover: el => {
+          if (el) {
+            this.onPDFBtnHover(el);
+          } else {
+            this.dropdownHoverTimeout = setTimeout(() => {
+              this.onPDFBtnHover(el);
+            }, 500);
+          }
+        },
         className: 'icon-file-pdf fr text-icon',
         text: '导出PDF',
         title: 'PDF'
       }
     ];
+  }
+  onPDFBtnHover(hoverEl) {
+    clearTimeout(this.dropdownHoverTimeout);
+    this.setState({
+      hoverEl
+    });
   }
   exportPDF() {
     // formReqeust('http://public.test/pdf.php', this.props.document);
@@ -219,11 +239,27 @@ class Editor extends Component {
           </div>
         )}
         <div className={styles.textArea}>
+          {this.state.hoverEl && (
+            <Dropdown
+              mouseIn={this.onDropdownMoveIn.bind(this)}
+              mouseOut={this.moDropdownMoveOut.bind(this)}
+              hoverEl={this.state.hoverEl}
+            />
+          )}
           <textarea id="textarea" ref={this.textArea} />
         </div>
       </section>
     );
   }
+  onDropdownMoveIn() {
+    setTimeout(() => {
+      clearTimeout(this.dropdownHoverTimeout);
+    });
+  }
+  moDropdownMoveOut() {
+    this.setState({ hoverEl: null });
+  }
+
   isShowBlock(key) {
     const item = this.props.navs.find(item => item.key === key);
     return item.show;

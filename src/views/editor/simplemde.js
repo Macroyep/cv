@@ -1825,6 +1825,14 @@ SimpleMDE.prototype.createToolbar = function(items) {
           el.target = '_blank';
         }
       }
+      if (item.hover) {
+        el.onmouseenter = () => {
+          item.hover(el);
+        };
+        el.onmouseleave = () => {
+          item.hover(null);
+        };
+      }
 
       toolbarData[item.name || item] = el;
       bar.appendChild(el);
