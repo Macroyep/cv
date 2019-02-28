@@ -19,7 +19,8 @@ class Editor extends Component {
     this.textArea = React.createRef();
     this.simpleMDE = null;
     this.state = {
-      hoverEl: null
+      hoverEl: null,
+      dropdownName: 'export'
     };
     this.dropdownHoverTimeout = null;
   }
@@ -159,6 +160,7 @@ class Editor extends Component {
         name: 'pdf',
         action: this.exportPDF.bind(this),
         hover: el => {
+          this.state.dropdownName = 'export';
           if (el) {
             this.onPDFBtnHover(el);
           } else {
@@ -223,7 +225,25 @@ class Editor extends Component {
   insertBlock(content) {
     this.simpleMDE.drawCustomBlock(content);
   }
-
+  getDropdownItems() {
+    if (this.state.dropdownName === 'export') {
+      return [
+        {
+          key: 'md',
+          title: '导出MD文件'
+        },
+        {
+          key: 'html',
+          title: '导出HTML'
+        },
+        {
+          key: 'json',
+          title: '导出整站数据'
+        }
+      ];
+    }
+    return [];
+  }
   render() {
     return (
       <section className={styles.editor}>
@@ -241,6 +261,8 @@ class Editor extends Component {
         <div className={styles.textArea}>
           {this.state.hoverEl && (
             <Dropdown
+              items={this.getDropdownItems()}
+              onClickItem={key => this.onClickDropItem(key)}
               mouseIn={this.onDropdownMoveIn.bind(this)}
               mouseOut={this.moDropdownMoveOut.bind(this)}
               hoverEl={this.state.hoverEl}
@@ -251,6 +273,7 @@ class Editor extends Component {
       </section>
     );
   }
+  onClickDropItem(key) {}
   onDropdownMoveIn() {
     setTimeout(() => {
       clearTimeout(this.dropdownHoverTimeout);

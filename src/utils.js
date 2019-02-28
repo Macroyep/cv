@@ -16,3 +16,13 @@ export function formReqeust(path, params, method = 'post') {
     document.body.removeChild(form);
   });
 }
+
+export function downloadFile(data, fileName = '未命名') {
+  var $a = document.createElement('a');
+  var blob = new Blob([content]);
+  $a.download = fileName;
+  $a.href = URL.createObjectURL(blob);
+  document.body.appendChild($a);
+  $a.click();
+  document.body.removeChild($a);
+}

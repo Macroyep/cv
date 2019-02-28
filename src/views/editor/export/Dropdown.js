@@ -21,8 +21,8 @@ class Dropdown extends Component {
       }
     });
   }
-  onAction(type) {
-    console.log(type);
+  onAction(key) {
+    this.props.onClickItem(key);
     this.props.mouseOut();
   }
   render() {
@@ -33,27 +33,15 @@ class Dropdown extends Component {
         onMouseEnter={this.props.mouseIn}
         onMouseLeave={this.props.mouseOut}
       >
-        <a
-          className={styles.link}
-          href="javascript:;"
-          onClick={() => this.onAction('md')}
-        >
-          导出MD文件
-        </a>
-        <a
-          className={styles.link}
-          href="javascript:;"
-          onClick={() => this.onAction('html')}
-        >
-          导出HTML
-        </a>
-        <a
-          className={styles.link}
-          href="javascript:;"
-          onClick={() => this.onAction('json')}
-        >
-          导出整站数据
-        </a>
+        {this.props.items.forEach(item => (
+          <a
+            className={styles.link}
+            href="javascript:;"
+            onClick={() => this.onAction(item.key)}
+          >
+            {item.title}
+          </a>
+        ))}
       </div>
     );
   }
