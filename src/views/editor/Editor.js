@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './Editor.module.css';
+import marked from 'marked';
 
 import { updateDocument, createDocument } from '../../actions/document';
 //render by https://github.com/sparksuite/simplemde-markdown-editor
@@ -10,7 +11,12 @@ import SimpleMDE from './simplemde';
 import { updateConfigNav } from '../../actions/config';
 
 import 'github-markdown-css/github-markdown.css';
-import { formReqeust } from '../../utils';
+import {
+  formReqeust,
+  downloadFile,
+  downloadMDHTML,
+  downloadSiteOption
+} from '../../utils';
 import FolderList from './folder/FolderList';
 import Dropdown from './export/Dropdown';
 class Editor extends Component {
@@ -273,7 +279,23 @@ class Editor extends Component {
       </section>
     );
   }
-  onClickDropItem(key) {}
+  onClickDropItem(key) {
+    const { text, name } = this.props.document;
+
+    switch (key) {
+      case 'md':
+        downloadFile(text, name + '.md');
+        break;
+
+      case 'html':
+        downloadMDHTML(marked(text), name);
+        break;
+
+      case 'json':
+        downloadSiteOption();
+        break;
+    }
+  }
   onDropdownMoveIn() {
     setTimeout(() => {
       clearTimeout(this.dropdownHoverTimeout);

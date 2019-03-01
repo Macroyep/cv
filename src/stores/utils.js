@@ -1,8 +1,11 @@
 export function initStorage(key) {
   return {
-    get: function() {
+    get: function(raw = false) {
       try {
         const r = localStorage.getItem(key);
+        if (raw) {
+          return r;
+        }
         return JSON.parse(r);
       } catch (err) {
         return null;

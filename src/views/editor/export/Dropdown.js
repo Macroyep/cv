@@ -33,8 +33,9 @@ class Dropdown extends Component {
         onMouseEnter={this.props.mouseIn}
         onMouseLeave={this.props.mouseOut}
       >
-        {this.props.items.forEach(item => (
+        {this.props.items.map(item => (
           <a
+            key={item.key}
             className={styles.link}
             href="javascript:;"
             onClick={() => this.onAction(item.key)}
