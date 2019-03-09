@@ -1,4 +1,8 @@
-export function initStorage(key) {
+/**
+ * 创建一个简单的存储对象，接受一个key
+ * @param {*} key
+ */
+export function makeStorage(key) {
   return {
     get: function(raw = false) {
       try {

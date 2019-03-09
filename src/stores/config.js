@@ -1,8 +1,8 @@
 import { CONFIG } from './reducer-types';
 import cloneDeep from 'lodash/cloneDeep';
-import { initStorage } from './utils';
+import { getStorage } from '@/helpers';
 
-const storage = initStorage('config');
+const storage = getStorage('config');
 const reducers = {
   [CONFIG.UPDATE_NAV](state, { key, show }) {
     const newState = cloneDeep(state);

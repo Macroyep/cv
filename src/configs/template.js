@@ -1,4 +1,4 @@
-// 片段
+// 模版片段
 
 const list = [
   {
@@ -114,6 +114,6 @@ const list = [
 
 export default list;
 
-export function build() {
+export function getTemplat() {
   return list.map(({ content }) => content).join('');
 }

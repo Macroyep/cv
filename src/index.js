@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './stores';
 import { Provider } from 'react-redux';
-import './assets/icomoon/style.css';
+import App from '@/views';
+import store from '@/stores';
+import '@/assets/styles/site.css';
+import '@/assets/icomoon/style.css';
 
 ReactDOM.render(
   <Provider store={store}>

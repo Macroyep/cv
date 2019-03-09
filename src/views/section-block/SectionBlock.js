@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styles from './SectionBlock.module.css';
 import SECTION_LIST from './config';
+import PropTypes from 'prop-types';
 class SectionBlock extends Component {
   constructor(props) {
     super(props);
   }
   onClickItem(key) {
-    const item = SECTION_LIST.find(item => item.key === key);
-    if (typeof this.props.handleSection === 'function') {
-      this.props.handleSection(item.content);
-    }
+    const { content } = SECTION_LIST.find(item => item.key === key);
+    this.props.handleSection(content);
   }
   render() {
     return (
@@ -37,12 +35,7 @@ class SectionBlock extends Component {
     );
   }
 }
-
-export default connect(
-  state => {
-    return {};
-  },
-  dispatch => {
-    return {};
-  }
-)(SectionBlock);
+SectionBlock.propTypes = {
+  handleSection: PropTypes.func.isRequired
+};
+export default SectionBlock;

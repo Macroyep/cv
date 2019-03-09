@@ -1,4 +1,3 @@
 {
-  "extends": "react-app",
-  "exclude": ["/src/views/editor/simplemde.js"]
+  "extends": "react-app"
 }

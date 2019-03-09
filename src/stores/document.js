@@ -1,9 +1,9 @@
 import { DOCUMENT } from './reducer-types';
 import { cloneDeep } from 'lodash';
-import { build } from '../configs/section';
-import { initStorage } from './utils';
-const storage = initStorage('document');
+import { getTemplat } from '../configs/template';
 
+import { getStorage } from '@/helpers';
+const storage = getStorage('document');
 const reducers = {
   [DOCUMENT.INIT](state, { lastState }) {
     return cloneDeep(lastState);
@@ -80,6 +80,6 @@ function getDefaultState() {
   }
   return {
     index: 0,
-    list: [buildDocument('刘德华-Web高级前端开发工程师', build())]
+    list: [buildDocument('刘德华-Web高级前端开发工程师', getTemplat())]
   };
 }

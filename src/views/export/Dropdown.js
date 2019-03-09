@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './Dropdown.module.css';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 class Dropdown extends Component {
   constructor(props) {
     super(props);
@@ -47,12 +48,12 @@ class Dropdown extends Component {
     );
   }
 }
+Dropdown.propTypes = {
+  items: PropTypes.array.isRequired,
+  mouseIn: PropTypes.func.isRequired,
+  mouseOut: PropTypes.func.isRequired,
+  onClickItem: PropTypes.func.isRequired,
+  hoverEl: PropTypes.element.isRequired
+};
 
-export default connect(
-  state => {
-    return {};
-  },
-  dispatch => {
-    return {};
-  }
-)(Dropdown);
+export default Dropdown;

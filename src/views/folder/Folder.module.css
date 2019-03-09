@@ -66,13 +66,12 @@
 
 .folderEdit {
   text-decoration: none;
-  font-size: 1;
   margin: 0 2px;
 }
 .folderItem:hover .folderEdit {
   display: block;
 }
-.folderEdit:hover {
+.folderedit:hover {
   color: black;
 }
 

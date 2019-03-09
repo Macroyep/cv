@@ -1,39 +1,10 @@
-import { initStorage } from './stores/utils';
-export function formReqeust(path, params, method = 'post') {
-  const form = document.createElement('form');
-  form.setAttribute('method', method);
-  form.setAttribute('action', path);
-  form.setAttribute('target', '_blank');
-  Object.keys(params).forEach(key => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'hidden');
-    input.setAttribute('name', key);
-    input.setAttribute('value', params[key]);
-    form.appendChild(input);
-  });
-  document.body.appendChild(form);
-  form.submit();
-  setTimeout(() => {
-    document.body.removeChild(form);
-  });
-}
-export function downloadFile(content, fileName = '未命名') {
-  var $a = document.createElement('a');
-  var blob = new Blob([content]);
-  $a.download = fileName;
-  $a.href = URL.createObjectURL(blob);
-  document.body.appendChild($a);
-  $a.click();
-  document.body.removeChild($a);
-}
-export function downloadSiteOption() {
-  const doc = initStorage('document');
-  const jsonStr = doc.get(true);
-  downloadFile(jsonStr, 'goover.top-' + Date.now() + '.json');
-}
-
-export function downloadMDHTML(html, name) {
-  const content = `
+/**
+ * 包装html，将用于导出
+ * @param {*} html
+ * @param {*} name
+ */
+export function wrapHTML(html, name) {
+  return `
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -51,6 +22,4 @@ export function downloadMDHTML(html, name) {
     </div>
   </body>
   </html>`;
-
-  downloadFile(content, name + '.html');
 }
