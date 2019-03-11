@@ -1,7 +1,8 @@
 import {
   makeStorage,
   createFileAndDownload,
-  getFileContent
+  getFileContent,
+  getLocalFile
 } from '@/utils/index';
 import { wrapHTML } from './html-template-helper';
 import { formReqeust } from '@/utils/request';
