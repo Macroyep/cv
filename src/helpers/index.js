@@ -1,12 +1,16 @@
 import { makeStorage, createFileAndDownload } from '@/utils/index';
 import { wrapHTML } from './html-template-helper';
 import { formReqeust } from '@/utils/request';
+import store from '@/stores/index';
+import { appendList } from '@/actions/document';
 let storage = {};
 /**
  * 获取存储空间
  * @param {*} key
  */
 export function getStorage(key) {
+  !storage && (storage = {});
+
   if (!storage[key]) {
     storage[key] = makeStorage(key);
   }
@@ -21,11 +25,56 @@ export function getAllStorage() {
 /**
  * 下载网站配置文件
  */
-export function downloadSiteConfig(
+export function downloadDocuments(
   fileName = window.location.hostname + '-' + Date.now() + '.json'
 ) {
-  const jsonStr = getStorage('document').get(true);
+  const doc = getStorage('document').get();
+  const jsonStr = JSON.stringify(doc.list);
   createFileAndDownload(jsonStr, fileName);
+}
+
+/**
+ * 获取本地文件对象
+ */
+export function getLocalFile() {
+  return new Promise(resolve => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = event => {
+      resolve(input.files);
+      setTimeout(() => {
+        document.body.removeChild(input);
+      });
+    };
+    document.body.append(input);
+    input.click();
+  });
+}
+
+/**
+ * 获取文件内容
+ * @param {*} file
+ */
+export function getFileContent(file) {
+  return new Promise(resolve => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      resolve(e.target.result);
+    };
+    reader.readAsText(file);
+  });
+}
+
+/**
+ * 导入文档s
+ */
+export async function importDocuments() {
+  const [file] = await getLocalFile();
+  if (file && file.type === 'application/json') {
+    const content = await getFileContent(file);
+    const list = JSON.parse(content);
+    store.dispatch(appendList(list));
+  }
 }
 
 /**

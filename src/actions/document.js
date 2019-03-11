@@ -36,3 +36,10 @@ export function init(lastState) {
     type: DOCUMENT.INIT
   };
 }
+
+export function appendList(list) {
+  return {
+    list,
+    type: DOCUMENT.APPEND
+  };
+}

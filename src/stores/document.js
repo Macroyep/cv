@@ -33,6 +33,13 @@ const reducers = {
       list
     };
   },
+  [DOCUMENT.APPEND](state, { list }) {
+    list = [].concat(state.list, list);
+    return {
+      ...state,
+      list
+    };
+  },
   [DOCUMENT.DELETE](state, { index }) {
     let list = cloneDeep(state.list);
 

@@ -6,7 +6,7 @@ import { updateDocument, createDocument } from '../actions/document';
 import SectionBlock from './section-block/SectionBlock';
 import SimpleMDE from './editor/simplemde';
 import { updateConfigNav } from '../actions/config';
-import { downloadMDHTML, downloadSiteConfig } from '@/helpers';
+import { downloadMDHTML, downloadDocuments, importDocuments } from '@/helpers';
 import { createFileAndDownload } from '@/utils';
 import FolderList from './folder/FolderList';
 import Dropdown from './export/Dropdown';
@@ -75,8 +75,12 @@ class Editor extends Component {
           title: '导出HTML'
         },
         {
-          key: 'json',
-          title: '导出整站数据'
+          key: 'export',
+          title: '导出列表'
+        },
+        {
+          key: 'import',
+          title: '导入列表'
         }
       ];
     }
@@ -123,8 +127,12 @@ class Editor extends Component {
         downloadMDHTML(marked(text), name);
         break;
 
-      case 'json':
-        downloadSiteConfig();
+      case 'export':
+        downloadDocuments();
+        break;
+
+      case 'import':
+        importDocuments();
         break;
     }
   }

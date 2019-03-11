@@ -53,7 +53,7 @@ Dropdown.propTypes = {
   mouseIn: PropTypes.func.isRequired,
   mouseOut: PropTypes.func.isRequired,
   onClickItem: PropTypes.func.isRequired,
-  hoverEl: PropTypes.element.isRequired
+  hoverEl: PropTypes.any.isRequired
 };
 
 export default Dropdown;
