@@ -1,4 +1,8 @@
-import { makeStorage, createFileAndDownload } from '@/utils/index';
+import {
+  makeStorage,
+  createFileAndDownload,
+  getFileContent
+} from '@/utils/index';
 import { wrapHTML } from './html-template-helper';
 import { formReqeust } from '@/utils/request';
 import store from '@/stores/index';
@@ -31,38 +35,6 @@ export function downloadDocuments(
   const doc = getStorage('document').get();
   const jsonStr = JSON.stringify(doc.list);
   createFileAndDownload(jsonStr, fileName);
-}
-
-/**
- * 获取本地文件对象
- */
-export function getLocalFile() {
-  return new Promise(resolve => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.onchange = event => {
-      resolve(input.files);
-      setTimeout(() => {
-        document.body.removeChild(input);
-      });
-    };
-    document.body.append(input);
-    input.click();
-  });
-}
-
-/**
- * 获取文件内容
- * @param {*} file
- */
-export function getFileContent(file) {
-  return new Promise(resolve => {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      resolve(e.target.result);
-    };
-    reader.readAsText(file);
-  });
 }
 
 /**
